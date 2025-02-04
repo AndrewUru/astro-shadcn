@@ -1,31 +1,26 @@
-import { useState, useEffect } from 'react'
-import { cn } from '@/lib/utils'
-import { ModeToggle } from '@/components/ModeToggle'
-import {
-  Home,
-  FileText,
-  Scale,
-  Book
-} from 'lucide-react'
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { ModeToggle } from "@/components/ModeToggle";
+import { Home, FileText, Scale, Book } from "lucide-react";
 
 const navigation = [
-  { title: "Home", path: "/", icon: Home },
+  { title: "Inicio", path: "/", icon: Home },
   { title: "Blog", path: "/blog", icon: Book },
-  { title: "README", path: "/readme", icon: FileText },
-  { title: "License", path: "/mit-license", icon: Scale }
-] as const
+  { title: "Área Personal", path: "/readme", icon: FileText },
+  { title: "Licencia", path: "/mit-license", icon: Scale },
+] as const;
 
 // Components
 const DesktopSidebar = () => {
-  const [isHovered, setIsHovered] = useState(false)
-  const [activePath, setActivePath] = useState('')
+  const [isHovered, setIsHovered] = useState(false);
+  const [activePath, setActivePath] = useState("");
 
   useEffect(() => {
-    setActivePath(window.location.pathname)
-    const handleRouteChange = () => setActivePath(window.location.pathname)
-    window.addEventListener('popstate', handleRouteChange)
-    return () => window.removeEventListener('popstate', handleRouteChange)
-  }, [])
+    setActivePath(window.location.pathname);
+    const handleRouteChange = () => setActivePath(window.location.pathname);
+    window.addEventListener("popstate", handleRouteChange);
+    return () => window.removeEventListener("popstate", handleRouteChange);
+  }, []);
 
   return (
     <aside
@@ -47,7 +42,7 @@ const DesktopSidebar = () => {
 
       <nav className="flex-1 pl-1">
         {navigation.map((item) => {
-          const Icon = item.icon
+          const Icon = item.icon;
           return (
             <a
               key={item.path}
@@ -64,7 +59,7 @@ const DesktopSidebar = () => {
                 {item.title}
               </span>
             </a>
-          )
+          );
         })}
       </nav>
 
@@ -77,9 +72,9 @@ const DesktopSidebar = () => {
         </div>
       </div>
     </aside>
-  )
-}
+  );
+};
 
 export function Sidebar() {
-  return <DesktopSidebar />
+  return <DesktopSidebar />;
 }

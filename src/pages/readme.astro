@@ -1,12 +1,355 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ReadmeContent from '../../README.md';
 ---
 
-<Layout title="README" description="Astro + Shadcn UI Documentation">
-  <div class="prose dark:prose-invert max-w-none">
-    <article>
-      <ReadmeContent />
-    </article>
-  </div>
+<style>
+
+  :root {
+  --container-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --text-color: #333333;
+  --button-bg: #4f46e5;
+  --button-text: #ffffff;
+  --button-hover-bg: #4338ca;
+}
+
+/* Encabezados y párrafos */
+h1, h2, h3 {
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+/* Estilos para el formulario */
+form {
+  background-color: var(--input-bg);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+    color: var(--text-color);
+}
+
+form button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Tabla del listado de bodegas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+table th, table td {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+table th {
+  background-color: var(--input-bg);
+}
+
+/* Botón para cargar listado y eliminar */
+.elementor-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.elementor-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Mensajes y estados */
+.no-results {
+  padding: 1rem;
+  text-align: center;
+  color: var(--muted-color);
+}
+
+/* Estilos para el contenedor del listado */
+.bodegas-container {
+  background-color: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado */
+.bodegas-container h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Botón de acción */
+.elementor-button {
+  display: inline-block;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.elementor-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Espaciado para el listado */
+#lista-bodegas {
+  margin-top: 1rem;
+}
+
+</style>
+
+<Layout title="Área Personal - Componentes Disponibles">
+  <div class="max-w-4xl mx-auto space-y-12 pb-8">
+    <div class="text-center space-y-4">
+      <h1 class="text-4xl font-bold tracking-tight">🌐 Área Personal</h1>
+      <p class="text-xl text-muted-foreground">
+        Aquí puedes explorar los componentes disponibles para implementar APIs y soluciones digitales.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <h2 class="text-2xl font-semibold">Componentes Disponibles</h2>
+      <ul class="list-disc list-inside space-y-2">
+        <li>🚀 Alert Dialog</li>
+        <li>📊 Chart</li>
+        <li>📝 Form</li>
+        <li>🔍 Input</li>
+        <li>🔄 Slider</li>
+        <!-- Agrega más componentes según tus necesidades -->
+      </ul>
+    </div>
+ 
+  <!-- Formulario HTML personalizado -->
+<form id="bodega-form" onsubmit="enviarFormulario(event)">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="ubicacion">Ubicación:</label>
+    <input type="text" id="ubicacion" name="ubicacion" required><br><br>
+
+    <label for="contacto">Contacto:</label>
+    <input type="text" id="contacto" name="contacto"><br><br>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion"></textarea><br><br>
+
+    <label for="imagen_logo">URL Imágen Logo:</label>
+    <input type="text" id="imagen_logo" name="imagen_logo"><br><br>
+
+    <label for="catalogo_vinos">Catálogo:</label>
+    <input type="text" id="catalogo_vinos" name="catalogo_vinos"><br><br>
+
+    <button type="submit">Crear</button>
+</form>
+
+<!-- HTML para mostrar la lista -->
+<div class="bodegas-container">
+    <h2>📌 Listado Creado</h2>
+    <button class="elementor-button" onclick="cargarBodegas()">🔄 Cargar listado</button>
+    <div id="lista-bodegas"></div>
+</div>
+</div>
+
+<script>
+async function enviarFormulario(event: Event) {
+    event.preventDefault();
+
+    const form = document.getElementById('bodega-form') as HTMLFormElement;
+    const formData = new FormData(form);
+
+    // Mapeo exacto según documentación
+    const data = {
+        nombre: formData.get('nombre'),
+        ubicacion: formData.get('ubicacion'),
+        contacto: formData.get('contacto') || null,
+        descripcion: formData.get('descripcion') || null,
+        url_imagen_logo: formData.get('imagen_logo') || null, // Nombre correcto
+        "catálogo_vinos": formData.get('catalogo_vinos') || null // Nombre con tilde
+    };
+
+    try {
+        const response = await fetch('https://api.nocodebackend.com/create/bodegas?Instance=45063_sistema_de_usuarios_v1', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer a23aa940ccfff6477b410c272d034c94c891f3e29421357a1eb58772b377',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const responseData = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${responseData.message || JSON.stringify(responseData)}`);
+        }
+
+        alert(`Bodega creada con éxito. ID: ${responseData.id}`);
+        form.reset();
+
+    } catch (error) {
+        console.error('Error completo:', error);
+        if (error instanceof Error) {
+            alert(error.message);
+        } else {
+            alert('An unknown error occurred');
+        }
+    }
+}
+</script>
+
+
+
+
+<script>
+async function cargarBodegas() {
+    try {
+        const response = await fetch('https://api.nocodebackend.com/read/bodegas?Instance=45063_sistema_de_usuarios_v1', {
+            headers: {
+                'Authorization': 'Bearer a23aa940ccfff6477b410c272d034c94c891f3e29421357a1eb58772b377'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        mostrarBodegas(data.data);
+
+    } catch (error) {
+        console.error('Error:', error);
+        if (error instanceof Error) {
+            alert('Error al cargar bodegas: ' + error.message);
+        } else {
+            alert('Error al cargar bodegas: ' + String(error));
+        }
+    }
+}
+
+function mostrarBodegas(bodegas: any[]) {
+    const contenedor = document.getElementById('lista-bodegas');
+    
+    if (!contenedor) {
+        console.error('El contenedor de la lista de bodegas no se encontró.');
+        return;
+    }
+
+    if (bodegas.length === 0) {
+        contenedor.innerHTML = '<p class="no-results">No hay bodegas registradas</p>';
+        return;
+    }
+
+    let html = `
+        <table class="bodegas-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Ubicación</th>
+                    <th>Contacto</th>
+                    <th>Logo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+    bodegas.forEach(bodega => {
+        html += `
+            <tr>
+                <td>${bodega.id}</td>
+                <td><strong>${bodega.nombre}</strong></td>
+                <td>${bodega.ubicacion}</td>
+                <td>${bodega.contacto || '<em class="text-muted">-</em>'}</td>
+                <td>${bodega.url_imagen_logo ? 
+                    `<img src="${bodega.url_imagen_logo}" alt="Logo ${bodega.nombre}" loading="lazy">` : 
+                    '<span class="text-muted">Sin logo</span>'}</td>
+                <td>
+                    <button class="delete-btn elementor-button" onclick="eliminarBodega(${bodega.id})">🗑 Eliminar</button>
+                </td>
+            </tr>`;
+    });
+
+    html += '</tbody></table>';
+    contenedor.innerHTML = html;
+}
+
+// Función opcional para eliminar
+async function eliminarBodega(id: number) {
+    if (!confirm('¿Seguro que quieres eliminar esta bodega?')) return;
+
+    try {
+        const response = await fetch(`https://api.nocodebackend.com/delete/bodegas/${id}?Instance=45063_sistema_de_usuarios_v1`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer a23aa940ccfff6477b410c272d034c94c891f3e29421357a1eb58772b377'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error al eliminar: ${response.status}`);
+        }
+
+        alert('Bodega eliminada');
+        cargarBodegas(); // Recargar lista
+
+    } catch (error) {
+        console.error('Error:', error);
+        if (error instanceof Error) {
+            alert('Error al eliminar: ' + error.message);
+        } else {
+            alert('Error al eliminar: ' + String(error));
+        }
+    }
+}
+</script>
 </Layout>
+
