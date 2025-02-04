@@ -3,163 +3,108 @@ import Layout from "../layouts/Layout.astro";
 import { Chart } from "../components/Chart";
 ---
 
-<Layout title="Astro + shadcn/ui">
-	<section class="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-		<div class="max-w-[64rem] flex flex-col items-center gap-4 text-center mx-auto">
-			<h1
-				class="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
-			>
-				Build beautiful websites with Astro 5 and shadcn/ui
-			</h1>
-			<p
-				class="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8"
-			>
-				A beautiful, modern website template built with Astro and
-				shadcn/ui. Featuring dark mode, responsive design, and great
-				typography.
-			</p>
-			<div class="space-x-4">
-				<a
-					href="https://ui.shadcn.com"
-					class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
-				>
-					Documentation
-				</a>
-				<a
-					href="https://github.com/one-ie/astro-shadcn"
-					class="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-				>
-					GitHub
-				</a>
+<Layout title="Dashboard - API Manager Pro">
+	<section class="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-12">
+		<div class="max-w-[64rem] flex flex-col items-start gap-4 text-left mx-auto">
+			<div class="w-full flex justify-between items-center">
+				<div>
+					<h1 class="font-heading text-3xl sm:text-4xl md:text-5xl">
+						Welcome back, <span class="text-primary">DevTeam</span> 👋
+					</h1>
+					<p class="mt-2 text-lg text-muted-foreground">
+						API Management Dashboard - Monitor your services in real time
+					</p>
+				</div>
+				<div class="space-x-4">
+					<a
+						href="/docs"
+						class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+					>
+						API Documentation
+					</a>
+					<a
+						href="/support"
+						class="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+					>
+						Support
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="space-y-6 py-8 md:py-12 lg:py-24">
-		<Chart client:load />
+	<section class="space-y-6 py-8 md:py-12 lg:py-8">
+		<div class="mx-auto max-w-6xl">
+			<div class="mb-6 flex justify-between items-center">
+				<h2 class="text-2xl font-bold">API Performance Metrics</h2>
+				<select class="rounded-md border border-input bg-background px-4 py-2 text-sm">
+					<option>Last 24 hours</option>
+					<option>Last 7 days</option>
+					<option>Last 30 days</option>
+				</select>
+			</div>
+			<Chart client:load />
+		</div>
 	</section>
 
-	<section class="space-y-6 py-8 md:py-12 lg:py-24">
-		<div class="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-			<p
-				class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-			>
-				Optimized for the best possible performance and accessibility
-			</p>
+	<section class="space-y-6 py-8 md:py-12 lg:py-8">
+		<div class="mx-auto grid max-w-6xl gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start">
+			<div class="relative overflow-hidden rounded-lg border bg-background p-2">
+				<div class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 mb-4 text-blue-500">
+						<path d="M12 2v20M2 5h20M3 12h18M4 19h16"/>
+					</svg>
+					<div class="space-y-2">
+						<h3 class="font-bold text-2xl">1.2M</h3>
+						<p class="text-sm text-muted-foreground">Total Requests</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="relative overflow-hidden rounded-lg border bg-background p-2">
+				<div class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 mb-4 text-green-500">
+						<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+						<polyline points="22 4 12 14.01 9 11.01"/>
+					</svg>
+					<div class="space-y-2">
+						<h3 class="font-bold text-2xl">99.9%</h3>
+						<p class="text-sm text-muted-foreground">Success Rate</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="relative overflow-hidden rounded-lg border bg-background p-2">
+				<div class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 mb-4 text-purple-500">
+						<path d="M12 2v20M2 5h20M3 12h18M4 19h16"/>
+					</svg>
+					<div class="space-y-2">
+						<h3 class="font-bold text-2xl">42</h3>
+						<p class="text-sm text-muted-foreground">Active Endpoints</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="relative overflow-hidden rounded-lg border bg-background p-2">
+				<div class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 mb-4 text-orange-500">
+						<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+					</svg>
+					<div class="space-y-2">
+						<h3 class="font-bold text-2xl">100%</h3>
+						<p class="text-sm text-muted-foreground">Uptime</p>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="mx-auto grid max-w-4xl gap-6 grid-cols-2 md:grid-cols-4 items-start">
-			<div
-				class="relative overflow-hidden rounded-lg border bg-background p-2"
-			>
-				<div
-					class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="h-12 w-12 mb-4 text-green-500"
-						><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg
-					>
-					<div class="space-y-2">
-						<h3 class="font-bold text-2xl">100</h3>
-						<p class="text-sm text-muted-foreground">Performance</p>
-					</div>
-				</div>
-			</div>
+	</section>
 
-			<div
-				class="relative overflow-hidden rounded-lg border bg-background p-2"
-			>
-				<div
-					class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="h-12 w-12 mb-4 text-green-500"
-						><circle cx="12" cy="12" r="10"></circle><path
-							d="m9 12 2 2 4-4"></path></svg
-					>
-					<div class="space-y-2">
-						<h3 class="font-bold text-2xl">100</h3>
-						<p class="text-sm text-muted-foreground">
-							Accessibility
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div
-				class="relative overflow-hidden rounded-lg border bg-background p-2"
-			>
-				<div
-					class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="h-12 w-12 mb-4 text-green-500"
-						><path
-							d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"
-						></path></svg
-					>
-					<div class="space-y-2">
-						<h3 class="font-bold text-2xl">100</h3>
-						<p class="text-sm text-muted-foreground">
-							Best Practices
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div
-				class="relative overflow-hidden rounded-lg border bg-background p-2"
-			>
-				<div
-					class="flex h-[150px] flex-col items-center justify-center rounded-md p-6 text-center"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="h-12 w-12 mb-4 text-green-500"
-						><path
-							d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
-						></path><line x1="4" y1="22" x2="4" y2="15"></line></svg
-					>
-					<div class="space-y-2">
-						<h3 class="font-bold text-2xl">100</h3>
-						<p class="text-sm text-muted-foreground">SEO</p>
-					</div>
-				</div>
-			</div>
+	<section class="space-y-6 py-8 md:py-12 lg:py-8">
+		<div class="mx-auto max-w-[58rem] flex flex-col items-center space-y-4 text-center">
+			<p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+				Monitoring your APIs in real-time with maximum security and efficiency
+			</p>
 		</div>
 	</section>
 </Layout>
