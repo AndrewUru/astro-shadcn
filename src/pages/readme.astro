@@ -198,11 +198,11 @@ table th {
 </div>
 </div>
 
-<script>
-async function enviarFormulario(event: Event) {
+<script type="module">
+async function enviarFormulario(event) {
     event.preventDefault();
 
-    const form = document.getElementById('bodega-form') as HTMLFormElement;
+    const form = document.getElementById('bodega-form');
     const formData = new FormData(form);
 
     // Mapeo exacto según documentación
@@ -248,7 +248,7 @@ async function enviarFormulario(event: Event) {
 
 
 
-<script>
+<script type="module">
 async function cargarBodegas() {
     try {
         const response = await fetch('https://api.nocodebackend.com/read/bodegas?Instance=45063_sistema_de_usuarios_v1', {
